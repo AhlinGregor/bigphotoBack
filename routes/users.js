@@ -135,17 +135,64 @@ users.post('/newUser', upload_dest.single('file'), async (req, res, next)=>{
     res.sendStatus(500)
   }
   res.end()
- })
+})
 
- users.get('/list', async (req, res, next) => {
-    try {
-        var queryResult = await DB.allUsers();
-        res.json(queryResult)
+users.post('/update', upload_dest.single('file'), async (req, res, next) => {
+  if(!req.session.logged_in){
+    console.log("req.session.logged_in: "+req.session.logged_in)
+    res.json({status:{success: false, msg: "Can not add post. You need to log-in!"}})
+    res.end(200)
+    return
+  }
+
+  let username = req.body.username;
+  let password = req.body.password;
+  let file = req.file;
+  let bio = req.body.bio;
+
+  var isCompleteProfile = username && password && file && bio;
+  try {
+    var queryResult = await DB.updateUser(username, password, file.filename, bio);
+  }
+  catch (error) {
+    console.error("error: ", error);
+  }
+})
+
+users.post('/delete', async (req, res, next) => {
+  if(!req.session.logged_in){
+    console.log("req.session.logged_in: "+req.session.logged_in)
+    res.json({status:{success: false, msg: "Can not delete user. You need to log-in!"}})
+    res.end(200)
+    return
+  }
+  let username = req.body.username;
+  try {
+    console.log('came into delete')
+    var queryResult = await DB.deleteUser(username);
+    console.log('after delete');
+    if (queryResult.affectedRows) {
+      res.json({status:{success: true, msg: "User izbrisan!"}})
+    }else{
+      res.json({status:{success: false, msg: "Could not delete!"}})
     }
-    catch (err) {
-        console.log(err)
-        res.sendStatus(500)
-    }
+      
+  }
+  catch (err) {
+    console.log(err)
+    res.sendStatus(500)
+  }
+})
+
+users.get('/list', async (req, res, next) => {
+  try {
+    var queryResult = await DB.allUsers();
+    res.json(queryResult)
+  }
+  catch (err) {
+    console.log(err)
+    res.sendStatus(500)
+  }
 })
  
 

@@ -64,9 +64,9 @@ dataPool.createObjava = (photo, desc, user) => {
   })
 }
 
-dataPool.deleteUser = (id) => {
+dataPool.deleteUser = (uname) => {
   return new Promise((resolve, reject) => {
-    conn.query(`DELETE FROM User WHERE id = ?`, id, (err, res) => {
+    conn.query(`DELETE FROM User WHERE username = ?`, [uname], (err, res) => {
       if (err) { return reject(err) }
       return resolve(res)
     })
@@ -76,6 +76,15 @@ dataPool.deleteUser = (id) => {
 dataPool.createUser = (uname, pass, pfp, bio) => {
   return new Promise((resolve, reject) => {
     conn.query(`INSERT INTO User (username,password,pfp,bio,role_id) VALUES (?,?,?,?,?)`, [uname, pass, pfp, bio, 3], (err, res) => {
+      if (err) { return reject(err) }
+      return resolve(res)
+    })
+  })
+}
+
+dataPool.updateUser = (uname, pass, pfp, bio) => {
+  return new Promise((resolve, reject) => {
+    conn.query(`UPDATE User SET password = ?, pfp = ?, bio = ? WHERE username = ?`, [pass, pfp, bio, uname], (err, res) => {
       if (err) { return reject(err) }
       return resolve(res)
     })
