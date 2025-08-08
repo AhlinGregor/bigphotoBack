@@ -166,11 +166,11 @@ users.post('/delete', async (req, res, next) => {
     res.end(200)
     return
   }
-  let username = req.body.username;
+  let id = req.session.uid;
   try {
-    console.log('came into delete')
-    var queryResult = await DB.deleteUser(username);
-    console.log('after delete');
+    console.log('session is: ', req.session);
+    var queryResult = await DB.deleteUser(id);
+    console.log('after delete:');
     if (queryResult.affectedRows) {
       res.json({status:{success: true, msg: "User izbrisan!"}})
     }else{

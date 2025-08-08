@@ -64,9 +64,9 @@ dataPool.createObjava = (photo, desc, user) => {
   })
 }
 
-dataPool.deleteUser = (uname) => {
+dataPool.deleteUser = (id) => {
   return new Promise((resolve, reject) => {
-    conn.query(`DELETE FROM User WHERE username = ?`, [uname], (err, res) => {
+    conn.query(`DELETE FROM User WHERE id = ?`, [id], (err, res) => {
       if (err) { return reject(err) }
       return resolve(res)
     })
