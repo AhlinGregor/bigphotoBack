@@ -30,7 +30,7 @@ app.use(session({
 //Some configurations
 app.use(express.urlencoded({extended : true}));
 app.use(cors({
-   origin: 'http://192.168.10.10:3030',
+   //origin: 'http://127.0.0.1:3030',
    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
    credentials: true
 }))
