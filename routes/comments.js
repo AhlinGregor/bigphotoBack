@@ -7,7 +7,7 @@ const DB = require('../db/dbConn.js')
 comments.get('/:id', async (req, res, next) => {
   try {
     var queryResult = await DB.commentsOn(req.params.id);
-    console.log(queryResult)
+    // console.log(queryResult)
     res.json(queryResult)
   }
   catch (err) {
@@ -18,7 +18,7 @@ comments.get('/:id', async (req, res, next) => {
 
 comments.post('/', async (req, res, next) => {
   if(!req.session.logged_in){
-    console.log("req.session.logged_in: "+req.session.logged_in)
+    console.log("req.session.logged_in COMMENT: "+req.session.logged_in)
     res.json({status:{success: false, msg: "Can not add comment. You need to log-in!"}})
     res.end(200)
     return
@@ -26,6 +26,7 @@ comments.post('/', async (req, res, next) => {
 
   let content = req.body.content;
   let postId = req.body.postId;
+
   try {
     let userId = req.session.uid;
     var queryResult = await DB.createComment(postId, userId, content);
@@ -42,7 +43,7 @@ comments.post('/', async (req, res, next) => {
 
 comments.post('/reply', async (req, res, next) => {
   if(!req.session.logged_in){
-    console.log("req.session.logged_in: "+req.session.logged_in)
+    console.log("req.session.logged_in REPLY: "+req.session.logged_in)
     res.json({status:{success: false, msg: "Can not add reply. You need to log-in!"}})
     res.end(200)
     return

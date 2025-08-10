@@ -9,7 +9,7 @@ const DB = require('../db/dbConn.js')
 objave.get('/', async (req, res, next) => {
     try {
         var queryResult = await DB.allObjave();
-        console.log(queryResult)
+        // console.log(queryResult)
         res.json(queryResult)
     }
     catch (err) {
@@ -45,11 +45,11 @@ objave.post('/unlike', async (req, res) => {
 
 objave.get('/isliked/:userId/:postId', async (req, res) => {
   const {userId, postId} = req.params;
-  console.log(`did ${userId} like ${postId}`);
+  // console.log(`did ${userId} like ${postId}`);
 
   try{
     const rows = await DB.isLiked(userId, postId);
-    console.log(`isLiked response ${rows.length}`)
+    // console.log(`isLiked response ${rows.length}`)
     res.json({liked: rows.length > 0});
   } catch(err) {
     console.log(err);
@@ -59,11 +59,11 @@ objave.get('/isliked/:userId/:postId', async (req, res) => {
 
 objave.get('/likecount/:postId', async (req, res) => {
   const {postId} = req.params;
-  console.log("Fetching like count for postId:", postId);
+  // console.log("Fetching like count for postId:", postId);
 
   try{
     const rows = await DB.countLikes(postId);
-    console.log("Like count result:", rows);
+    // console.log("Like count result:", rows);
     res.json({ count: rows[0].count })
   } catch(err) {
     console.log(err);
@@ -110,7 +110,7 @@ const upload_dest = multer({ storage: storage });
 objave.post('/', upload_dest.single('file'), async (req, res, next) => {
 
   if(!req.session.logged_in){
-    console.log("req.session.logged_in: "+req.session.logged_in)
+    console.log("req.session.logged_in OBJAVA: "+req.session.logged_in)
     res.json({status:{success: false, msg: "Can not add post. You need to log-in!"}})
     res.end(200)
     return

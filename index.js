@@ -29,11 +29,11 @@ app.use(session({
 
 //Some configurations
 app.use(express.urlencoded({extended : true}));
-app.use(cors({
-   origin: front,
-   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
-   credentials: true
-}))
+// app.use(cors({
+//    origin: process.env.FRONT,
+//    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
+//    credentials: true
+// }))
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/pfps', express.static(path.join(__dirname, 'pfps')));
@@ -50,9 +50,9 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"))
 })
 
-app.use('/objave', objave)
-app.use('/users', users)
-app.use('/comments', comments)
+app.use('/api/objave', objave)
+app.use('/api/users', users)
+app.use('/api/comments', comments)
 // app.use('/uploadFile', upload)
 
 
