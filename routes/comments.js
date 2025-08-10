@@ -26,6 +26,7 @@ comments.post('/', async (req, res, next) => {
 
   let content = req.body.content;
   let postId = req.body.postId;
+
   try {
     let userId = req.session.uid;
     var queryResult = await DB.createComment(postId, userId, content);
