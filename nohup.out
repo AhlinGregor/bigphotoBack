@@ -1,0 +1,202 @@
+Example app listening on port 9002!
+Connection established
+HTTPS server running on port 9002
+node:events:368
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::9002
+    at Server.setupListenHandle [as _listen2] (node:net:1334:16)
+    at listenInCluster (node:net:1382:12)
+    at Server.listen (node:net:1469:7)
+    at Function.listen (/home/studenti/famnit/89231290/Sistemi3/bigBackend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/home/studenti/famnit/89231290/Sistemi3/bigBackend/index.js:72:5)
+    at Module._compile (node:internal/modules/cjs/loader:1101:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1361:8)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 9002
+}
+HTTPS server running on port 9002
+Connection established
+LOGIN OK
+SESSION 1:  Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+LOGIN OK
+SESSION 1:  Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+session data in /session: 
+Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+session data in /session: 
+Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+LOGIN OK
+SESSION 1:  Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+session data in /session: 
+Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+1754934003504-546266178.JPG
+File upladed
+New post added!
+came into delete
+ResultSetHeader {
+  fieldCount: 0,
+  affectedRows: 1,
+  insertId: 0,
+  info: '',
+  serverStatus: 2,
+  warningStatus: 0,
+  changedRows: 0
+}
+New comment added!
+LOGIN OK
+SESSION 1:  Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+session data in /session: 
+Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+Reply with mention added!
+LOGIN OK
+SESSION 1:  Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+session data in /session: 
+Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 19
+}
+Reply with mention added!
+1754935298130-459798630.jpg
+File upladed
+New user added!!
+LOGIN OK
+SESSION 1:  Session {
+  cookie: {
+    path: '/',
+    _expires: null,
+    originalMaxAge: null,
+    httpOnly: true,
+    partitioned: true,
+    secure: true,
+    sameSite: 'none'
+  },
+  logged_in: true,
+  uid: 20
+}

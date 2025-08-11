@@ -4,6 +4,8 @@ require('dotenv').config()
 const app = express()
 const cors = require("cors")
 const path = require('path')
+const https = require('https');
+const fs = require('fs');
 const port = process.env.PORT || 5009
 const front = process.env.FRONT
 
@@ -19,21 +21,26 @@ app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: 'some secret',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
-    secure: false,
+    partitioned: true,
+    secure: true,
     httpOnly: true,
-    sameSite: 'lax'
-  }
+    sameSite: 'none',
+  },
+  logged_in: false,
+  uid: null,
 }))
 
 //Some configurations
 app.use(express.urlencoded({extended : true}));
-// app.use(cors({
-//    origin: process.env.FRONT,
-//    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
-//    credentials: true
-// }))
+app.use(cors({
+   origin: process.env.FRONT,
+   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
+   credentials: true
+}))
+app.options('*', cors());
+
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/pfps', express.static(path.join(__dirname, 'pfps')));
@@ -55,6 +62,14 @@ app.use('/api/users', users)
 app.use('/api/comments', comments)
 // app.use('/uploadFile', upload)
 
+const httpsOptions = {
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+};
+
+https.createServer(httpsOptions, app).listen(port, () => {
+  console.log(`HTTPS server running on port ${port}`);
+});
 
 // start the express server
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+//app.listen(port, () => console.log(`Example app listening on port ${port}!`))

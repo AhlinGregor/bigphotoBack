@@ -15,14 +15,25 @@ users.post('/login', async (req, res) => {
 
             if (queryResult.length > 0) {
                 if (password === queryResult[0].password) {
-                    console.log(queryResult)
+                    // console.log(queryResult)
                     console.log("LOGIN OK");
                     //req.session.user_email = queryResult[0].user_email;
                     req.session.logged_in = true;
+                    // res.session.logged_in = true;
                     // console.log(req.session.logged_in);
                     req.session.uid = queryResult[0].id;
-                    // console.log(req.session.uid);
+                    console.log("SESSION 1: ", req.session);
+                    req.session.save(err => {
+                      if (err) {
+                        console.error('Session save error:', err);
+                        return res.status(500).send('Error saving session');
+                      }
+                      // console.log("TIS IS A KONSOL LOG")
+                      
+                    });
+                    // console.log("SESSION 2: ", req.session);
                     res.json({ success: true, message: "LOGIN OK", user: {id: queryResult[0].id, username: queryResult[0].username, role_id: queryResult[0].role_id }});
+                    
                     res.status(200)
                 }
                 else {
@@ -51,7 +62,7 @@ users.post('/login', async (req, res) => {
 
 users.get('/session', async (req, res, next)=>{
   try{
-    console.log("session data: ")
+    console.log("session data in /session: ")
     console.log(req.session)
     res.json(req.session);
   }
